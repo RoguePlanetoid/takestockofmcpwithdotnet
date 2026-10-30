@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "Stock": {
+      "type": "http",
+      "url": "http://localhost:5054/mcp",
+      "tools": [
+        "*"
+      ]
+    }
+  }
+}

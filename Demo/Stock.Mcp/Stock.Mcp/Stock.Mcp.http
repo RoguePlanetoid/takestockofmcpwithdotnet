@@ -1,0 +1,233 @@
+# For more info on HTTP files go to https://aka.ms/vs/httpfile
+
+@HostAddress = http://localhost:5054/mcp
+
+### List all available tools
+POST {{HostAddress}}
+Accept: application/json, text/event-stream
+Content-Type: application/json
+MCP-Protocol-Version: 2025-11-25
+
+{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "method": "tools/list"
+}
+
+### search_products
+POST {{HostAddress}}
+Accept: application/json, text/event-stream
+Content-Type: application/json
+MCP-Protocol-Version: 2025-11-25
+
+{
+    "jsonrpc": "2.0",
+    "id": 2,
+    "method": "tools/call",
+    "params": {
+        "name": "search_products",
+        "arguments": {
+            "query": "brake pad",
+            "maxStock": null
+        }
+    }
+}
+
+### create_product
+POST {{HostAddress}}
+Accept: application/json, text/event-stream
+Content-Type: application/json
+MCP-Protocol-Version: 2025-11-25
+
+{
+    "jsonrpc": "2.0",
+    "id": 3,
+    "method": "tools/call",
+    "params": {
+        "name": "create_product",
+        "arguments": {
+            "productCode": "BP123",
+            "description": "Premium Brake Pad",
+            "costPrice": 12.50,
+            "sellPrice": 24.99,
+            "quantityStock": 10
+        }
+    }
+}
+
+### update_stock
+POST {{HostAddress}}
+Accept: application/json, text/event-stream
+Content-Type: application/json
+MCP-Protocol-Version: 2025-11-25
+
+{
+    "jsonrpc": "2.0",
+    "id": 4,
+    "method": "tools/call",
+    "params": {
+        "name": "update_stock",
+        "arguments": {
+            "productCode": "BP123",
+            "quantity": 5,
+            "mode": "Add"
+        }
+    }
+}
+
+### record_sale
+POST {{HostAddress}}
+Accept: application/json, text/event-stream
+Content-Type: application/json
+MCP-Protocol-Version: 2025-11-25
+
+{
+    "jsonrpc": "2.0",
+    "id": 5,
+    "method": "tools/call",
+    "params": {
+        "name": "record_sale",
+        "arguments": {
+            "productCode": "BP123",
+            "quantitySold": 2,
+            "date": null
+        }
+    }
+}
+
+### get_sales_history
+POST {{HostAddress}}
+Accept: application/json, text/event-stream
+Content-Type: application/json
+MCP-Protocol-Version: 2025-11-25
+
+{
+    "jsonrpc": "2.0",
+    "id": 6,
+    "method": "tools/call",
+    "params": {
+        "name": "get_sales_history",
+        "arguments": {
+            "productCode": "BP123",
+            "fromDate": null,
+            "toDate": null
+        }
+    }
+}
+
+### List all resources
+POST {{HostAddress}}
+Accept: application/json, text/event-stream
+Content-Type: application/json
+MCP-Protocol-Version: 2025-11-25
+
+{
+    "jsonrpc": "2.0",
+    "id": 7,
+    "method": "resources/list"
+}
+
+### List resource templates
+POST {{HostAddress}}
+Accept: application/json, text/event-stream
+Content-Type: application/json
+MCP-Protocol-Version: 2025-11-25
+
+{
+    "jsonrpc": "2.0",
+    "id": 8,
+    "method": "resources/templates/list"
+}
+
+### Read samples index resource
+POST {{HostAddress}}
+Accept: application/json, text/event-stream
+Content-Type: application/json
+MCP-Protocol-Version: 2025-11-25
+
+{
+    "jsonrpc": "2.0",
+    "id": 9,
+    "method": "resources/read",
+    "params": {
+        "uri": "stock://samples"
+    }
+}
+
+### Read a specific sample resource
+POST {{HostAddress}}
+Accept: application/json, text/event-stream
+Content-Type: application/json
+MCP-Protocol-Version: 2025-11-25
+
+{
+    "jsonrpc": "2.0",
+    "id": 10,
+    "method": "resources/read",
+    "params": {
+        "uri": "stock://samples/brake-pads"
+    }
+}
+
+### List all prompts
+POST {{HostAddress}}
+Accept: application/json, text/event-stream
+Content-Type: application/json
+MCP-Protocol-Version: 2025-11-25
+
+{
+    "jsonrpc": "2.0",
+    "id": 11,
+    "method": "prompts/list"
+}
+
+### Get the stock_assistant prompt
+POST {{HostAddress}}
+Accept: application/json, text/event-stream
+Content-Type: application/json
+MCP-Protocol-Version: 2025-11-25
+
+{
+    "jsonrpc": "2.0",
+    "id": 12,
+    "method": "prompts/get",
+    "params": {
+        "name": "stock_assistant"
+    }
+}
+
+### Get the create_product prompt (with argument)
+POST {{HostAddress}}
+Accept: application/json, text/event-stream
+Content-Type: application/json
+MCP-Protocol-Version: 2025-11-25
+
+{
+    "jsonrpc": "2.0",
+    "id": 13,
+    "method": "prompts/get",
+    "params": {
+        "name": "create_product",
+        "arguments": {
+            "request": "Premium Brake Pad for a Ford Focus"
+        }
+    }
+}
+
+### Get the sales_history prompt (with argument)
+POST {{HostAddress}}
+Accept: application/json, text/event-stream
+Content-Type: application/json
+MCP-Protocol-Version: 2025-11-25
+
+{
+    "jsonrpc": "2.0",
+    "id": 14,
+    "method": "prompts/get",
+    "params": {
+        "name": "sales_history",
+        "arguments": {
+            "productCode": "BP123"
+        }
+    }
+}
